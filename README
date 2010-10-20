@@ -1,0 +1,64 @@
+VERSION 0.4 PyHP (was formely PyPHP) - Python integrated PHP Interpreter
+
+USE WORD WRAP - Yeah so kill me.
+
+Description:
+With this software it is currently possible to run php scripts or source directly from Python.
+This is primarily intended to execute simple formatting scripts from Python or to use PHP as a templating language for Python Webservers.
+
+WHY DO THIS? Because PHP has a nice standard library for doing simple functional manipulations that are often needed in templates.  It's better to use a well documented well-maintained language than implementing yet another pseudo language for templating. PHP also handles iteration well and concisely.
+With HIP-HOP we can make the worlds fastest dynamic templates that are written in PHP! (just give us a little bit more time)
+
+Why Use Python at All?
+Python is an application language - it's capable of producing excellent applications, command-line utilities, curses, webservers, etc... PHP IS NOT.
+PHP is a scripting language designed to do fairly simple things; and both it's greatest strength and its greatest weakness - PHP IS NOT STATEFUL; it resets after every request. This means information cannot be shared between requests without using shared memory or some IPC of some-type.
+PHP is however great for formatting strings, iterating, and has a huge standard library of functions to do many many things.
+
+Currently allows single-threaded execution of PHP source code from Python.
+It currently exposes methods to convert Python Data structures to PHP Data Structures (except for objects, and resources)
+
+
+INSTALLATION:
+see:  http://wiki.joshburns.me/index.php/PHP_C_API:_Compiling_PHP_Embed
+
+or...
+-----------------------------------------------------------------
+= Prerequisites =
+# Download the latest PHP source from <http://php.net/downloads.php>
+# Install libxml2-dev
+#* Ubuntu:
+#** <code>sudo apt-get install libxml2-dev</code>
+
+= Compiling PHP Embed =
+# Decompress the archive.
+#* <code>tar -xv php-5.3.3.tar</code>
+# Configure the source.
+#* <code>./configure --enable-embed=shared</code>
+#** <code>--enable-embed</code> can be be either <code>shared</code> (for a shared object) or <code>static</code> (for a static object)
+# Compile and install the source
+#* <code>sudo make all install</code>
+# NOTE:
+#* The PHP shared object (<code>libphp5.so</code>) will be located at <code>/usr/local/lib</code>
+#* The PHP includes files will be located in <code>/usr/local/include/php</code>
+----------------------------------------------------------------
+
+1.) Install PHP as a Shared Object on your system (compile to .so)  (SEE ABOVE)
+2.) Install python-dev "sudo apt-get install python-dev"
+3.) You might need these also: "sudo apt-get install python-numpy python-distutils-extra python-setuptools"
+3.) Run "sudo python setup.py build"
+4.) Run "sudo python setup.py install"
+
+
+TODO:
+-Allow PHP script return values, and marshal to python data types (easy)
+-Integrate Facebooks HIP-HOP for simple templates to compile to C++ OR use Facebooks intepreter to allow multi-threaded execution for non-blocking polling webservers like TWISTED
+-Eliminate need for PHP .so altogether
+-Update this readme to an acceptable state - (sorry) we'll get to it soon, but we want to change a lot still.
+-Add notes on working with multibyte / UTF8 strings between languages.
+-add doc tags to the Python Source so documentation can be auto-generated (our fault for being lazy first time around)
+
+
+This product includes PHP software, freely available from
+     <http://www.php.net/software/>".
+
+	 
